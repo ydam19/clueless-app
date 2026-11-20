@@ -1,0 +1,17 @@
+import Svg, { Circle, Path, Rect } from 'react-native-svg';
+
+// 프로토타입 하단 탭 아이콘과 같은 선 아이콘
+export type IconName = 'calendar' | 'closet' | 'home' | 'community' | 'my';
+
+export function Icon({ name, color, size = 24, strokeWidth = 1.6 }: { name: IconName; color: string; size?: number; strokeWidth?: number }) {
+  const p = { fill: 'none', stroke: color, strokeWidth, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24">
+      {name === 'calendar' && (<><Rect x={3.5} y={5} width={17} height={15.5} rx={1.5} {...p} /><Path d="M3.5 9.5h17M8 3v4M16 3v4" {...p} /></>)}
+      {name === 'closet' && (<><Path d="M12 7.5a2 2 0 1 1 2-2c0 1-.8 1.4-1.4 1.8-.4.3-.6.6-.6 1.1v.6" {...p} /><Path d="M12 9 3.3 15.2c-.8.6-.4 1.8.6 1.8h16.2c1 0 1.4-1.2.6-1.8z" {...p} /></>)}
+      {name === 'home' && <Path d="M3.5 10.5 12 4l8.5 6.5V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z" {...p} />}
+      {name === 'community' && (<><Circle cx={9} cy={8} r={3.2} {...p} /><Path d="M3 19.5c.8-3.2 3.2-5 6-5s5.2 1.8 6 5" {...p} /><Circle cx={16.5} cy={9} r={2.6} {...p} /><Path d="M16.5 14c2.3 0 4 1.4 4.5 4" {...p} /></>)}
+      {name === 'my' && (<><Circle cx={12} cy={8.5} r={4} {...p} /><Path d="M4.5 20.5c1.2-3.8 4.2-5.5 7.5-5.5s6.3 1.7 7.5 5.5" {...p} /></>)}
+    </Svg>
+  );
+}
