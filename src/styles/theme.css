@@ -1,0 +1,29 @@
+/* 클루리스 디자인 값 (프로토타입과 같음). 색·글꼴은 반드시 이 변수로 쓴다. */
+:root {
+  --ivory: #FAF7EF;  /* 화면 배경 */
+  --paper: #FFFDF7;  /* 카드·입력칸 배경 */
+  --ink: #1E2235;    /* 기본 글자, 진한 버튼 */
+  --muted: #3F4352;
+  --soft: #5E6170;   /* 보조 글자 */
+  --line: #DCD6C6;   /* 구분선 */
+  --ph: #E8E2D4;     /* 사진 자리 */
+  --yellow: #EDCF3A; /* 타탄 바탕 */
+  --pink: #B81E73;   /* 강조: 가장 중요한 버튼 하나, 선택된 탭 */
+
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Noto Sans KR', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+
+  --gutter: 24px;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+img { display: block; max-width: 100%; }

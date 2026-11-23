@@ -1,0 +1,4 @@
+.screen { padding: var(--gutter); display: flex; flex-direction: column; gap: 12px; }
+.screen-title { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 28px; color: var(--ink); }
+.screen-title em { font-style: italic; }
+.screen .sub { margin: 0; font-size: 13px; color: var(--soft); }

@@ -1,0 +1,4 @@
+.item-card { min-width: 0; }
+.item-card img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--ph); border-radius: 2px; }
+.item-card .name { margin: 6px 0 0; font-size: 12px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.item-card .cat { margin: 2px 0 0; font-size: 11px; color: var(--soft); }

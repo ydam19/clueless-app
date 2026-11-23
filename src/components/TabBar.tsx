@@ -1,47 +1,25 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import type { BottomTabBarProps } from 'expo-router/js-tabs';
-import { colors, fonts } from '@/theme';
-import { Icon, type IconName } from './Icon';
-import { Tartan } from './Tartan';
+import { NavLink } from 'react-router'
+import { Icon, type IconName } from './Icon'
+import './TabBar.css'
 
-const META: Record<string, { label: string; icon: IconName }> = {
-  calendar: { label: '캘린더', icon: 'calendar' },
-  closet: { label: '옷장', icon: 'closet' },
-  index: { label: '홈', icon: 'home' },
-  community: { label: '커뮤니티', icon: 'community' },
-  my: { label: 'MY', icon: 'my' },
-};
+// 하단 탭 순서: [캘린더][옷장][홈(가운데)][커뮤니티][MY]
+const TABS: { to: string; label: string; icon: IconName }[] = [
+  { to: '/calendar', label: '캘린더', icon: 'calendar' },
+  { to: '/closet', label: '옷장', icon: 'closet' },
+  { to: '/', label: '홈', icon: 'home' },
+  { to: '/community', label: '커뮤니티', icon: 'community' },
+  { to: '/my', label: 'MY', icon: 'my' },
+]
 
-// 타탄 무늬 하단 탭 (프로토타입과 같은 모양)
-export function TabBar({ state, navigateToTab }: BottomTabBarProps) {
-  const insets = useSafeAreaInsets();
+export function TabBar() {
   return (
-    <Tartan kind="nav" style={[s.bar, { paddingBottom: Math.max(insets.bottom, 12) }]}>
-      {state.routes.map((route, i) => {
-        const meta = META[route.name];
-        if (!meta) return null;
-        const on = state.index === i;
-        const color = on ? colors.pink : 'rgba(30,34,53,0.78)';
-        return (
-          <Pressable
-            key={route.key}
-            accessibilityRole="tab"
-            accessibilityState={{ selected: on }}
-            onPress={() => { if (!on) navigateToTab(route.key); }}
-            style={s.tab}
-          >
-            <Icon name={meta.icon} color={color} strokeWidth={on ? 2 : 1.6} />
-            <Text style={[s.label, { color }]}>{meta.label}</Text>
-          </Pressable>
-        );
-      })}
-    </Tartan>
-  );
+    <nav className="tabbar">
+      {TABS.map((t) => (
+        <NavLink key={t.to} to={t.to} end={t.to === '/'} className={({ isActive }) => (isActive ? 'on' : '')}>
+          <Icon name={t.icon} />
+          {t.label}
+        </NavLink>
+      ))}
+    </nav>
+  )
 }
-
-const s = StyleSheet.create({
-  bar: { flexDirection: 'row', paddingTop: 8, paddingHorizontal: 12 },
-  tab: { flex: 1, minHeight: 52, alignItems: 'center', justifyContent: 'center', gap: 4 },
-  label: { fontSize: 11, fontFamily: fonts.sansBold },
-});

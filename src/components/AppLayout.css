@@ -1,0 +1,15 @@
+.app {
+  height: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--ivory);
+}
+.app-top {
+  flex-shrink: 0;
+  padding: calc(8px + env(safe-area-inset-top)) var(--gutter) 14px;
+  background: var(--yellow) url('../assets/tartan_top.png') left top / 390px 120px repeat;
+}
+.logo { font-family: var(--serif); font-size: 34px; line-height: 1.2; color: var(--pink); }
+.app-body { flex: 1; overflow-y: auto; }
